@@ -34,69 +34,72 @@
 void operatorControl() {
     
 	while(1){
-	
-		//Drivetrain
+	///////////////////////
+	//////Drivetrain///////
+	///////////////////////
 		if (abs(joystickGetAnalog(1, 3) > 15)) {
 			motorSet(2,joystickGetAnalong(1, 3)); //LB WHEEL
 			}
-		else if (abs(joystickGetAnalog(1, 3) < 15))
-			motorSet(2,0);
-			}
-			if (abs(joystickGetAnalog(1, 3) > 15)) {
-				motorSet(8,joystickGetAnalong(1, 3)); //LF WHEEL
+			else if (abs(joystickGetAnalog(1, 3) < 15))
+				motorSet(2,0);
+					}
+		if (abs(joystickGetAnalog(1, 3) > 15)) {
+			motorSet(8,joystickGetAnalong(1, 3)); //LF WHEEL
 				}
 			else if (abs(joystickGetAnalog(1, 3) < 15)){
 				motorSet(8, 0);
+					}
+		if (abs(joystickGetAnalog(1, 2) > 15)) {
+			motorSet(4, joystickGetAnalong(1, 3)); //RB WHEEL
 				}
-					if (abs(joystickGetAnalog(1, 2) > 15)) {
-						motorSet(4, joystickGetAnalong(1, 3)); //RB WHEEL
-						}
-					else if (abs(joystickGetAnalog(1, 2) < 15)) {
-						motorSet(4, 0);
-						}
-							if (abs(joystickGetAnalog(1, 2) > 15)) {
-								motorSet(9, joystickGetAnalong(1, 2)); //RF WHEEL
-								}
-							else if (abs(joystickGetAnalog(1, 2) < 15)) {
-								motorSet(9, 0);
-								}
-		//Arm
+			else if (abs(joystickGetAnalog(1, 2) < 15)) {
+				motorSet(4, 0);
+					}
+		if (abs(joystickGetAnalog(1, 2) > 15)) {
+			motorSet(9, joystickGetAnalong(1, 2)); //RF WHEEL
+				}
+			else if (abs(joystickGetAnalog(1, 2) < 15)) {
+				motorSet(9, 0);
+					}
+		///////////////////////
+		//////Drivetrain///////
+		///////////////////////
 			if (joystickGetDigital(1, 6, JOY_UP)) {
 				motorSet( MOTOR_ARM_LH, 127);
 			}
-			else
-				motorSet(MOTOR_ARM_LH, 0); {
-			}
-				if (joystickGetDigital(1, 6, JOY_UP)) {
-					motorSet(MOTOR_ARM_RH, 127);
+				else
+					motorSet(MOTOR_ARM_LH, 0); {
 				}
+			if (joystickGetDigital(1, 6, JOY_UP)) {
+				motorSet(MOTOR_ARM_RH, 127);
+			}
 				else
 					motorSet(MOTOR_ARM_RH, 0); {
 				}
-					if (joystickGetDigital(1, 6, JOY_UP)) {
-						motorSet(MOTOR_ARM_LRL, 127);
+			if (joystickGetDigital(1, 6, JOY_UP)) {
+				motorSet(MOTOR_ARM_LRL, 127);
 					}
-					else
-						motorSet(MOTOR_ARM_LRL, 0); {
+				else
+					motorSet(MOTOR_ARM_LRL, 0); {
 					}
-						if (joystickGetDigital(1, 6, JOY_DOWN)) {
-							motorSet(MOTOR_ARM_LH, -127);
+			if (joystickGetDigital(1, 6, JOY_DOWN)) {
+				motorSet(MOTOR_ARM_LH, -127);
 						}
-						else
-							motorSet(MOTOR_ARM_LH, 0); {
+				else
+					motorSet(MOTOR_ARM_LH, 0); {
 						}
-							if (joystickGetDigital(1, 6, JOY_DOWN)) {
-								motorSet(MOTOR_ARM_RH, -127);
+			if (joystickGetDigital(1, 6, JOY_DOWN)) {
+				motorSet(MOTOR_ARM_RH, -127);
 							}
-							else
-								motorSet(MOTOR_ARM_RH, 0); {
-								}
-									if (joystickGetDigital(1, 6, JOY_DOWN)) {
-										motorSet(MOTOR_ARM_LRL, -127);
-										}
-									else
-										motorSet(MOTOR_ARM_LRL, 0); {
-									}
+				else
+					motorSet(MOTOR_ARM_RH, 0); {
+							}
+			if (joystickGetDigital(1, 6, JOY_DOWN)) {
+				motorSet(MOTOR_ARM_LRL, -127);
+						}
+				else
+					motorSet(MOTOR_ARM_LRL, 0); {
+					}
 		//Clapper
 			if (joystickGetDigital(1, 7, JOY_UP)) {
 				mostorSet(MOTOR_CLAPPER, 127);
@@ -108,11 +111,10 @@ void operatorControl() {
 					}
 				else
 					motorSet(MOTOR_CLAPPER, 0); {
-
 			}
 		}
 	//POT Arm
 			while (analongRead(SENSOR_POT_ARM)) {
-				printf("%d\n", analogRead(SENSOR_POT_ARM));
+				printf("%d\n", analogRead(SENSOR_POT_ARM)); //under progress...
 			}
 

@@ -3,7 +3,7 @@
 int slewTarget[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //arrays go from 0-9 speed is 0 for all ports
 int slewTemp;
 
-//The Coolest Functions//
+//The Coolest Functions// Under Progress
 
 /*Slew rate commanding
 void motorsSlew(const signed char *ports, int speed) {

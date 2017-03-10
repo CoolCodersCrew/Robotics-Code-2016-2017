@@ -32,10 +32,10 @@
     <ClInclude Include="include\API.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\main.h">
+    <ClInclude Include="src\library.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\library.h">
+    <ClInclude Include="src\main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

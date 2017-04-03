@@ -30,7 +30,7 @@
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
 
-
+//Robot is still undergoing a major overhaul thus we do not know if this code is 100% functional
 void operatorControl() {
 	
 	///////////////////////

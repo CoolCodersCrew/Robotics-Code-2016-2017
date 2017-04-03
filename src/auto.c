@@ -26,16 +26,10 @@
 *
 * The autonomous task may exit, unlike operatorControl() which should never exit. If it does so, the robot will await a switch to another mode or disable/enable cycle.
 */
-void autonomous() { ///Terrible time based autonomous///
+void autonomous() { ///Time based autonomous nowhere near done///
 	while (1);
 	{
 	///Forward///
-	motorSet(2, 127);
-	motorSet(4, 127);
-	motorSet(8, 127);
-	motorSet(9, 127);
-	wait1Msec(5000);
-	///Turn///
 	motorSet(2, 127);
 	motorSet(4, 127);
 	motorSet(8, 127);

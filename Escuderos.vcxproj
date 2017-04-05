@@ -84,7 +84,7 @@
     <ClCompile Include="src\opcontrol.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\API.h" />
+    <ClInclude Include="src\API.h" />
     <ClInclude Include="src\library.h" />
     <ClInclude Include="src\main.h" />
   </ItemGroup>

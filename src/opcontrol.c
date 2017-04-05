@@ -16,7 +16,6 @@
  ********************************************************************************/
 
 #include "main.h"
-#include "library.h"
 
 /**
  * Runs the user operator control code.
@@ -32,38 +31,38 @@
 
 //Robot is still undergoing a major overhaul thus we do not know if this code is 100% functional
 void operatorControl() {
-	
+
 	///////////////////////
 	////// Drivetrain ///////
 	///////////////////////
-	
+
 	while (1) {
-		
 		if (abs(joystickGetAnalog(1, 3) > 15)) {
-			motorSet(2, joystickGetAnalong(1, 3)); //LB WHEEL
+			motorSet(2, joystickGetAnalog(1, 3)); //LB WHEEL
 		}
 		else if (abs(joystickGetAnalog(1, 3) < 15)) {
 			motorSet(2, 0);
 		}
 		if (abs(joystickGetAnalog(1, 3) > 15)) {
-			motorSet(8, joystickGetAnalong(1, 3)); //LF WHEEL
+			motorSet(8, joystickGetAnalog(1, 3)); //LF WHEEL
 		}
 		else if (abs(joystickGetAnalog(1, 3) < 15)) {
 			motorSet(8, 0);
 		}
 		if (abs(joystickGetAnalog(1, 2) > 15)) {
-			motorSet(4, joystickGetAnalong(1, 3)); //RB WHEEL
+			motorSet(4, joystickGetAnalog(1, 3)); //RB WHEEL
 		}
 		else if (abs(joystickGetAnalog(1, 2) < 15)) {
 			motorSet(4, 0);
 		}
 		if (abs(joystickGetAnalog(1, 2) > 15)) {
-			motorSet(9, joystickGetAnalong(1, 2)); //RF WHEEL
+			motorSet(9, joystickGetAnalog(1, 2)); //RF WHEEL
 		}
 		else if (abs(joystickGetAnalog(1, 2) < 15)) {
 			motorSet(9, 0);
 		}
 	}
+}
 		/*///////////////////////
 		////// NOT Drivetrain ///////
 		///////////////////////

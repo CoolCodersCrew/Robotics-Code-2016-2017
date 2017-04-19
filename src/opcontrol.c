@@ -15,7 +15,7 @@
  * Purdue Robotics OS contains FreeRTOS (http://www.freertos.org) whose source code may be obtained from http://sourceforge.net/projects/freertos/files/ or on request.
  ********************************************************************************/
 
-#include "main.h"
+#include "..\include\main.h"
 
 /**
  * Runs the user operator control code.
@@ -29,7 +29,7 @@
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
 
-//Robot is still undergoing a major overhaul thus we do not know if this code is 100% functional
+//Robot is still undergoing a major overhaul thus we do not know if this code is 100% functional currenty being worked for 12 motor bot
 void operatorControl() {
 
 	///////////////////////
@@ -37,29 +37,57 @@ void operatorControl() {
 	///////////////////////
 
 	while (1) {
-		if (abs(joystickGetAnalog(1, 3) > 15)) {
-			motorSet(2, joystickGetAnalog(1, 3)); //LB WHEEL
+		//LB WHEEL//
+		if (abs(joystickGetAnalog(1, 3) > 15 || abs(joystickGetAnalog(1, 3) < -15))) 
+		{
+			motorSet(1, joystickGetAnalog(1, 3)); 
+			motorSet(2, joystickGetAnalog(1, 3));
+			motorSet(3, -joystickGetAnalog(1, 3)); //motor is facing opposite direction
 		}
-		else if (abs(joystickGetAnalog(1, 3) < 15)) {
+		else
+		{
+			motorSet(1, 0); 
 			motorSet(2, 0);
+			motorSet(3, 0);
 		}
-		if (abs(joystickGetAnalog(1, 3) > 15)) {
-			motorSet(8, joystickGetAnalog(1, 3)); //LF WHEEL
+		//RB WHEEL//
+		if (abs(joystickGetAnalog(1, 2) > 15 || abs(joystickGetAnalog(1, 2) < -15)))
+		{
+			motorSet(4, joystickGetAnalog(1, 2)); 
+			motorSet(5, joystickGetAnalog(1, 2));
+			motorSet(6, -joystickGetAnalog(1, 2));
 		}
-		else if (abs(joystickGetAnalog(1, 3) < 15)) {
-			motorSet(8, 0);
-		}
-		if (abs(joystickGetAnalog(1, 2) > 15)) {
-			motorSet(4, joystickGetAnalog(1, 3)); //RB WHEEL
-		}
-		else if (abs(joystickGetAnalog(1, 2) < 15)) {
+		else
+		{
 			motorSet(4, 0);
+			motorSet(5, 0);
+			motorSet(6, 0);
 		}
-		if (abs(joystickGetAnalog(1, 2) > 15)) {
-			motorSet(9, joystickGetAnalog(1, 2)); //RF WHEEL
+		//LF WHEEL//
+		if (abs(joystickGetAnalog(1, 3) > 15 || abs(joystickGetAnalog(1, 3) < -15)))
+		{
+			motorSet(7, joystickGetAnalog(1, 3)); 
+			motorSet(8, joystickGetAnalog(1, 3));
+			motorSet(9, -joystickGetAnalog(1, 3));
 		}
-		else if (abs(joystickGetAnalog(1, 2) < 15)) {
+		else
+		{
+			motorSet(7, 0);
+			motorSet(8, 0);
 			motorSet(9, 0);
+		}
+		//RF Wheel//
+		if (abs(joystickGetAnalog(1, 2) > 15 || abs(joystickGetAnalog(1, 2) < -15)))
+		{
+			motorSet(10, joystickGetAnalog(1, 2)); 
+			motorSet(11, joystickGetAnalog(1, 2));
+			motorSet(12, -joystickGetAnalog(1, 2));
+		}
+		else
+		{
+			motorSet(10, 0);
+			motorSet(11, 0);
+			motorSet(12, 0);
 		}
 	}
 }

@@ -16,6 +16,7 @@
 ********************************************************************************/
 
 #include "main.h"
+#include"library.h"
 
 /**
 * Runs the user autonomous code.
@@ -26,5 +27,9 @@
 *
 * The autonomous task may exit, unlike operatorControl() which should never exit. If it does so, the robot will await a switch to another mode or disable/enable cycle.
 */
-void autonomous() { ///Time based autonomous nowhere near done///
+
+void autonomous()
+{
+		autoDrive(127, 0, 0);//going straight for 3 seconds full power
+		delay(3000);
 }

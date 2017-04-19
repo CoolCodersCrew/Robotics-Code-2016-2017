@@ -1,9 +1,18 @@
-#include "main.h"
+#include "..\include\main.h"
+#include "..\include\library.h"
 //SRC (Slew Rate Control)
 int slewTarget[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //arrays go from 0-9 speed is 0 for all ports
 int slewTemp;
 
-//The Coolest Functions// Under Progress
+// Under Progress...
+
+void autoDrive(int straight, int leftTurning, int rightTurning)
+{
+	motorSet(2, straight);  motorSet(4, straight); motorSet(8, straight); motorSet(9, straight);
+	motorSet(2, leftTurning); motorSet(8, leftTurning);
+	motorSet(4, rightTurning); motorSet(9, rightTurning);
+}
+
 
 /*Slew rate commanding
 void motorsSlew(const signed char *ports, int speed) {
@@ -20,7 +29,7 @@ void motorsSlew(const signed char *ports, int speed) {
 		j++;
 	}
 }
-
+*/
 //SRC
 void slewControlTask(void * parameter) {
 	while (1) {
@@ -45,6 +54,7 @@ void slewControlTask(void * parameter) {
 		wait(20);
 	}
 }
-*/
-//Sensor alue = something, run this
+
+
+
 

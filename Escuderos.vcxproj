@@ -75,21 +75,30 @@
     <NMakeReBuildCommandLine>make</NMakeReBuildCommandLine>
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
   </PropertyGroup>
-  <ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64C:\Program Files (x86)\Windows Kits\10\Lib\10.0.14393.0\ucrt\</LibraryPath>
+    <IncludePath>$(ProjectDir)\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\ucrt</AdditionalIncludeDirectories>
+    </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="mtrmgr.c" />
     <ClCompile Include="src\auto.c" />
     <ClCompile Include="src\init.c" />
     <ClCompile Include="src\library.c" />
     <ClCompile Include="src\opcontrol.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\API.h" />
-    <ClInclude Include="src\library.h" />
-    <ClInclude Include="src\main.h" />
+    <Text Include="Serial Debugging.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Serial Debugging.txt" />
+    <ClInclude Include="API.h" />
+    <ClInclude Include="include\library.h" />
+    <ClInclude Include="include\main.h" />
+    <ClInclude Include="mtrmgr.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

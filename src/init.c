@@ -17,6 +17,7 @@
 
 #include "main.h"
 
+
  /**
   * Runs pre-initialization code.
   *
@@ -38,5 +39,10 @@ void initializeIO() {
  * This function must exit relatively promptly, or the operatorControl() and autonomous() tasks will not start. An autonomous mode selection menu like the pre_auton() in other environments can be implemented in this task if desired.
  */
 void initialize() {
-    
+	extern int slewTarget[10];
+	for (int i = 0; i<10; i++) {
+		slewTarget[i] = 0;
+		motorSet(i + 1, slewTarget[i]);
+	}
+	taskCreate (slewControlTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT - 1);
 }

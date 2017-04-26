@@ -1,31 +1,29 @@
 #pragma once
 #include "API.h"
-//Whoa MOTORS!!!!
 
-#define MOTOR_LEFTBACK_WHEEL			1
-#define MOTOR_LEFTBACK_WHEEL2			2
-#define MOTOR_LEFTBACK_WHEEL3			3
-#define MOTOR_RIGHTBACK_WHEEL			4
-#define MOTOR_RIGHTBACK_WHEEL2			5
-#define MOTOR_RIGHTBACK_WHEEL3			6
-#define MOTOR_LEFTFRONT_WHEEL			7
-#define MOTOR_LEFTFRONT_WHEEL2			8
-#define MOTOR_LEFTFRONT_WHEEL3			9
-#define MOTOR_RIGHTFRONT_WHEEL			10
-#define MOTOR_RIGHTFRONT_WHEEL2			11
-#define MOTOR_RIGHTFRONT_WHEEL3			12
+//MOTORS!!!!
+
+#define MOTOR_LEFTFRONT_WHEEL			2
+#define MOTOR_LEFTFRONT_WHEEL2			3
+#define MOTOR_LEFTFRONT_WHEEL3			4 //not working interfering with gears
+#define MOTOR_RIGHTFRONT_WHEEL			5
+#define MOTOR_RIGHTFRONT_WHEEL2			6
+#define MOTOR_RIGHTFRONT_WHEEL3			7 //not working interfering with gears
+
+//SRC
+void slewControlTask(void * parameter);
 
 
 
-
-
-//Nothing
+//Autonomous
 extern int straight;
 extern int leftTurning;
 extern int rightTurning;
 
 
 void autoDrive(int straight, int leftTurning, int rightTurning);
+
+
 
 
 

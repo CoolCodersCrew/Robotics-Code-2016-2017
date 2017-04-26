@@ -85,7 +85,6 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="mtrmgr.c" />
     <ClCompile Include="src\auto.c" />
     <ClCompile Include="src\init.c" />
     <ClCompile Include="src\library.c" />
@@ -98,7 +97,6 @@
     <ClInclude Include="API.h" />
     <ClInclude Include="include\library.h" />
     <ClInclude Include="include\main.h" />
-    <ClInclude Include="mtrmgr.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

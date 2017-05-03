@@ -19,8 +19,6 @@ void slewControlTask(void * parameter);
 extern int straight;
 extern int leftTurning;
 extern int rightTurning;
-
-
 void autoDrive(int straight, int leftTurning, int rightTurning);
 
 

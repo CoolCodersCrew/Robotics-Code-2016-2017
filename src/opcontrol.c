@@ -15,7 +15,7 @@
  * Purdue Robotics OS contains FreeRTOS (http://www.freertos.org) whose source code may be obtained from http://sourceforge.net/projects/freertos/files/ or on request.
  ********************************************************************************/
 
-#include "..\include\main.h"
+#include "main.h"
 
 /**
  * Runs the user operator control code.
@@ -40,28 +40,28 @@ void operatorControl() {
 		//LF WHEEL//
 		if (abs(joystickGetAnalog(1, 3) > 15 || abs(joystickGetAnalog(1, 3) < -15)))
 		{
-			motorSet(2, joystickGetAnalog(1, 3));
+			motorSet(2, -joystickGetAnalog(1, 3));
 			motorSet(3, -joystickGetAnalog(1, 3));
-			//motorSet(4, joystickGetAnalog(1, 3)); 
+			motorSet(4, joystickGetAnalog(1, 3)); 
 		}
 		else
 		{
 			motorSet(2, 0);
 			motorSet(3, 0);
-			//motorSet(4, 0);
+			motorSet(4, 0);
 		}
 		//RF WHEEL//
 		if (abs(joystickGetAnalog(1, 2) > 15 || abs(joystickGetAnalog(1, 2) < -15)))
 		{
 			motorSet(5, -joystickGetAnalog(1, 2));
 			motorSet(6, joystickGetAnalog(1, 2));
-			//motorSet(7, -joystickGetAnalog(1, 2));
+			motorSet(7, joystickGetAnalog(1, 2));
 		}
 		else
 		{
 			motorSet(5, 0);
 			motorSet(6, 0);
-			//motorSet(7, 0);
+			motorSet(7, 0);
 		}
 	}
 }

@@ -39,6 +39,13 @@ will update this code with slew rate control in the future before end of break.
 
 Making code for new robot in class which as of right now only has a drivetrain and autonomous
 
+5/9/17
+
+New robot, will be detailed in future. New functions for drive control and how to win.
+Slew Rate Control implemented so motors will not ptc.
+Robot will go around the field once with rope trailing behind it to each corner,
+when it arrives to the last corner, gear with ziptie will turn at square and score a lap every 5 seconds.
+
 ### References 
 
 Official PROS Website http://pros.cs.purdue.edu/

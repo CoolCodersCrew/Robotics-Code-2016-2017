@@ -30,6 +30,6 @@
 
 void autonomous()
 {
-		autoDrive(127, 0, 0); //going straight for 2 seconds full power
-		delay(2000);
+		autoDrive(127, 0, 0); // going straight for 2 seconds full power
+		wait(2000);
 }

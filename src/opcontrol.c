@@ -30,39 +30,19 @@
  */
 
 //Robot is still undergoing a major overhaul thus we do not know if this code is 100% functional currenty being worked for 12 motor bot
-void operatorControl() {
+void operatorControl() 
+{
 
 	///////////////////////
 	////// Drivetrain ///////
 	///////////////////////
-
-	while (1) {
-		//LF WHEEL//
-		if (abs(joystickGetAnalog(1, 3) > 15 || abs(joystickGetAnalog(1, 3) < -15)))
-		{
-			motorSet(2, -joystickGetAnalog(1, 3));
-			motorSet(3, -joystickGetAnalog(1, 3));
-			motorSet(4, joystickGetAnalog(1, 3)); 
-		}
-		else
-		{
-			motorSet(2, 0);
-			motorSet(3, 0);
-			motorSet(4, 0);
-		}
-		//RF WHEEL//
-		if (abs(joystickGetAnalog(1, 2) > 15 || abs(joystickGetAnalog(1, 2) < -15)))
-		{
-			motorSet(5, -joystickGetAnalog(1, 2));
-			motorSet(6, joystickGetAnalog(1, 2));
-			motorSet(7, joystickGetAnalog(1, 2));
-		}
-		else
-		{
-			motorSet(5, 0);
-			motorSet(6, 0);
-			motorSet(7, 0);
-		}
+	while (1)
+	{
+		manualControl();
+		//turnControl();
+		turbineControl();
+		spoolControl();
 	}
 }
+
 	

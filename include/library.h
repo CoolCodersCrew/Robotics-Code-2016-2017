@@ -10,17 +10,6 @@
 #define MOTOR_RIGHT_FRONT_WHEEL2		6
 #define MOTOR_TURBINE					7 
 
-void leftWheels()
-{
-	MOTOR_LEFT_FRONT_WHEEL;
-	MOTOR_LEFT_FRONT_WHEEL3;
-}
-void rightWheels()
-{
-	MOTOR_RIGHT_FRONT_WHEEL;
-	MOTOR_RIGHT_FRONT_WHEEL2;
-}
-
 //SRC
 
 void slewControlTask(void * parameter);
@@ -41,6 +30,7 @@ void turnControl();
 void turbineControl();
 void spoolControl();
 void shaftEncoder();
+void motorCorrection();
 
 //Shaft Encoders
 

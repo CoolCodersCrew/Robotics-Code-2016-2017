@@ -144,7 +144,7 @@ void shaftEncoder()
 			motorSet(6, 0);
 			printf("Enc value: %d\r\n", encoderGet(encoder));
 		}
-		while (joystickGetDigital == (1, 6))
+		while (joystickGetDigital(1, 6, JOY_UP))
 		{
 			motorSet(7, 0);
 			wait(5000);
@@ -161,7 +161,7 @@ void shaftEncoder()
 			motorSet(6, 0);
 			printf("Enc value: %d\r\n", encoderGet(encoder));
 		}
-		while (joystickGetDigital == (1, 6))
+		while (joystickGetDigital(1, 6, JOY_DOWN))
 		{
 			motorSet(7, 0);
 			wait(5000);
@@ -175,13 +175,13 @@ void shaftEncoder()
 }
 	
 // IME Stable Manual  //
-void motorCorrections()
+void motorCorrection()
 {
 	int encLeftFront;
 	int encRightFront;
 	int encLeftBack;
 	int encRightBack;
-	int K;
+	int K = 0; // temporary value
 	
 	while (1 == 1)
 	{
@@ -196,8 +196,9 @@ void motorCorrections()
 			printf("IME LB value: %d\r\n", imeGet(IME_LEFT_REAR, &encLeftBack));
 		}
 		else
-		{ 
-			motorSet(leftWheels, 0);
+		{
+			motorSet(2, 0);
+			motorSet(4, 0);
 			imeReset(IME_LEFT_FRONT);
 			imeReset(IME_LEFT_REAR);
 			imeReset(IME_RIGHT_FRONT);
@@ -214,11 +215,12 @@ void motorCorrections()
 		}
 		else
 		{
-			motorSet(rightWheels, 0);
+			motorSet(5, 0);
+			motorSet(6, 0);
 			imeReset(IME_LEFT_FRONT);
 			imeReset(IME_LEFT_REAR);
 			imeReset(IME_RIGHT_FRONT);
 			imeReset(IME_RIGHT_REAR);
 		}
-
+	}
 }

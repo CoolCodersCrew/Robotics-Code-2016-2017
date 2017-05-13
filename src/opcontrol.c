@@ -38,10 +38,12 @@ void operatorControl()
 	///////////////////////
 	while (1)
 	{
-		manualControl();
+		//manualControl();
 		//turnControl();
 		turbineControl();
-		spoolControl();
+		//spoolControl();
+		shaftEncoder();
+		motorCorrections();
 	}
 }
 

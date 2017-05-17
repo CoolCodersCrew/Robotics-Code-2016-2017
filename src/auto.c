@@ -28,8 +28,12 @@
 * The autonomous task may exit, unlike operatorControl() which should never exit. If it does so, the robot will await a switch to another mode or disable/enable cycle.
 */
 
-void autonomous()
+void autonomous() //Theoretical complete lap
 {
-		autoDrive(127, 0, 0); // going straight for 2 seconds full power
-		wait(2000);
+		autoArc(117, 86);
+		autoRight(117);
+		autoStraight(127);
+		autoArc(117, 86);
+		autoRight(117);
+		autoStraight(127);
 }

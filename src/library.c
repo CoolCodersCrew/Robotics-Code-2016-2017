@@ -39,38 +39,102 @@ void smartMotorSet(int motor, int cmd) {
 }
 
 //Autonomous//
-void autoDrive(int straight, int leftTurning, int rightTurning)
+/**
+* Straight Autonomous function 
+* @param Power of motors
+*/
+void autoStraight(int straight)
 {
-	motorSet(2, straight); motorSet(4, straight); motorSet(5, straight); motorSet(6, straight); motorSet(7, straight);
-	motorSet(2, leftTurning); motorSet(4, leftTurning);
-	motorSet(5, rightTurning); motorSet(6, rightTurning); 
+	int time = millis();
+	while (true)
+	{
+		while (millis() - time < 2000)
+		{
+			motorSet(2, straight); motorSet(4, straight); motorSet(5, straight); motorSet(6, straight);
+			wait(100);
+		}
+	}
+}
+/**
+* Left Autonomous function
+* @param Power of motors
+*/
+void autoLeft(int left)
+{
+	int time = millis();
+	while (true)
+	{
+		while (millis() - time < 2000)
+		{
+			motorSet(2, left); motorSet(4, left);
+			wait(100);
+		}
+	}
+}
+/**
+* Right Autonomous function
+* @param Power of motors
+*/
+void autoRight(int right)
+{
+	int time = millis();
+	while (true)
+	{
+		while (millis() - time < 2000)
+		{
+			motorSet(5, -right); motorSet(6, right);
+			wait(100);
+		}
+	}
+}
+/**
+* Arc Turn Autonomous function
+* @param Power of left motors
+* @param Power of right motors
+*/
+void autoArc(int left, int right)
+{
+	int time = millis();
+
+	while (millis() - time < 4000) 
+	{
+		motorSet(2, left); motorSet(4, -left);
+		motorSet(5, -right); motorSet(6, right);
+		wait(100);
+	}
+
 }
 
 //Manual Control//
+/**
+* Normal Driver control function
+*/
 void manualControl() // Drive Control
 {
+	//Defining function
 	//LF WHEEL//
-	if (abs(joystickGetAnalog(1, 3) > 15 || abs(joystickGetAnalog(1, 3) < -15)))
-	{
-		motorSet(2, joystickGetAnalog(1, 3));
-		motorSet(4, -joystickGetAnalog(1, 3));
-	}
-	else
-	{
-		motorSet(2, 0);
-		motorSet(4, 0);
-	}
+		if (abs(joystickGetAnalog(1, 3)) > 15) 
+		{
+			motorSet(2, joystickGetAnalog(1, 3));
+			motorSet(4, -joystickGetAnalog(1, 3));
+		}
+		else
+		{
+			motorSet(2, 0);
+			motorSet(4, 0);
+		}
 	//RF WHEEL//
-	if (abs(joystickGetAnalog(1, 2) > 15 || abs(joystickGetAnalog(1, 2) < -15)))
-	{
-		motorSet(5, -joystickGetAnalog(1, 2));
-		motorSet(6, joystickGetAnalog(1, 2));
-	}
-	else
-	{
-		motorSet(5, 0);
-		motorSet(6, 0);
-	}
+		if (abs(joystickGetAnalog(1, 2)) > 15)
+		{
+			motorSet(5, -joystickGetAnalog(1, 2));
+			motorSet(6, joystickGetAnalog(1, 2));
+		}
+		else
+		{
+			motorSet(5, 0);
+			motorSet(6, 0);
+		}
+	
 }
 
 // Turn Control //
@@ -93,16 +157,22 @@ void turnControl()
 // Turbine Control // 
 void turbineControl() // Gear with zipties so it can do multiple laps in after just going sround once
 {
-	if (joystickGetDigital(1, 7, JOY_DOWN))
-	{
-		motorSet(7, 127);
-	}
+	{ 
+		if (joystickGetDigital(1, 5, JOY_DOWN))
+		{
+			motorSet(7, -127);
+		}
 
-	else
-	{
-		motorSet(7, 0);
-	}
+		else if (joystickGetDigital(1, 5, JOY_UP))
+		{
+			motorSet(7, 127);
+		}
 
+		else
+		{
+			motorSet(7, 0);
+		}
+	}
 }
 
 // Spool Control //
@@ -133,6 +203,7 @@ void spoolControl()
 
 void shaftEncoder()
 {
+  
 	if (joystickGetDigital(1, 6, JOY_UP))
 	{
 		while (abs(encoderGet(encoder)) < 5)
@@ -147,7 +218,7 @@ void shaftEncoder()
 		while (joystickGetDigital(1, 6, JOY_UP))
 		{
 			motorSet(7, 0);
-			wait(5000);
+			wait(20);
 		}
 	}
 	else if (joystickGetDigital(1, 6, JOY_DOWN))
@@ -164,7 +235,7 @@ void shaftEncoder()
 		while (joystickGetDigital(1, 6, JOY_DOWN))
 		{
 			motorSet(7, 0);
-			wait(5000);
+			wait(20);
 		}
 	}
 		else
@@ -172,30 +243,35 @@ void shaftEncoder()
 			encoderReset(encoder);
 			motorSet(7, 0);
 		}
+  
 }
+
 	
-// IME Stable Manual  //
+// IME Stable Manual not yet // 
 void motorCorrection()
 {
 	int encLeftFront;
 	int encRightFront;
-	int encLeftBack;
-	int encRightBack;
+	int encLeftRear;
+	int encRightRear;
 	int K = 0; // temporary value
-	
-	while (1 == 1)
-	{
-		if (abs(joystickGetAnalog(1, 3) > 15 || abs(joystickGetAnalog(1, 3) < -15)))
-		{
 
+	while (1)
+	{
+		imeReset(IME_LEFT_FRONT);
+		imeReset(IME_LEFT_REAR);
+		imeReset(IME_RIGHT_FRONT);
+		imeReset(IME_RIGHT_REAR);
+		if (abs(joystickGetAnalog(1, 3)) > 15)
+		{
 			motorSet(2, joystickGetAnalog(1, 3) - K*(imeGet(IME_RIGHT_FRONT, &encRightFront) - imeGet(IME_LEFT_FRONT, &encLeftFront))); // LF Wheel
-			motorSet(4, joystickGetAnalog(1, 3) - K*(imeGet(IME_RIGHT_REAR, &encRightBack) - imeGet(IME_LEFT_REAR, &encLeftBack)));  // LB Wheel 
+			motorSet(4, -joystickGetAnalog(1, 3) - K*(imeGet(IME_RIGHT_REAR, &encRightRear) - imeGet(IME_LEFT_REAR, &encLeftRear)));  // LB Wheel 
 			printf("IME LF value: %d\r\n", imeGet(IME_LEFT_FRONT, &encLeftFront));
 			printf("IME RF value: %d\r\n", imeGet(IME_RIGHT_FRONT, &encRightFront));
-			printf("IME RB value: %d\r\n", imeGet(IME_RIGHT_REAR, &encRightBack));
-			printf("IME LB value: %d\r\n", imeGet(IME_LEFT_REAR, &encLeftBack));
+			printf("IME RB value: %d\r\n", imeGet(IME_RIGHT_REAR, &encRightRear));
+			printf("IME LB value: %d\r\n", imeGet(IME_LEFT_REAR, &encLeftRear));
 		}
-		else
+		else if (abs(joystickGetAnalog(1, 3)) < 15)
 		{
 			motorSet(2, 0);
 			motorSet(4, 0);
@@ -204,17 +280,35 @@ void motorCorrection()
 			imeReset(IME_RIGHT_FRONT);
 			imeReset(IME_RIGHT_REAR);
 		}
-		if (abs(joystickGetAnalog(1, 2) > 15 || abs(joystickGetAnalog(1, 2) < -15)))
+		if (abs(joystickGetAnalog(1, 3)) > 15)
 		{
-			motorSet(5, joystickGetAnalog(1, 2) - K*(imeGet(IME_LEFT_FRONT, &encLeftFront) - imeGet(IME_RIGHT_FRONT, &encRightFront))); // RF Wheel
-			motorSet(6, joystickGetAnalog(1, 2) - K*(imeGet(IME_LEFT_REAR, &encLeftBack) - imeGet(IME_RIGHT_REAR, &encRightBack)));	// LF Wheel
+			motorSet(5, -joystickGetAnalog(1, 2) - K*(imeGet(IME_LEFT_FRONT, &encLeftFront) - imeGet(IME_RIGHT_FRONT, &encRightFront))); // RF Wheel
+			motorSet(6, joystickGetAnalog(1, 2) - K*(imeGet(IME_LEFT_REAR, &encLeftRear) - imeGet(IME_RIGHT_REAR, &encRightRear)));	// LF Wheel
 			printf("IME LF value: %d\r\n", imeGet(IME_LEFT_FRONT, &encLeftFront));
 			printf("IME RF value: %d\r\n", imeGet(IME_RIGHT_FRONT, &encRightFront));
-			printf("IME RB value: %d\r\n", imeGet(IME_RIGHT_REAR, &encRightBack));
-			printf("IME LB value: %d\r\n", imeGet(IME_LEFT_REAR, &encLeftBack));
+			printf("IME RB value: %d\r\n", imeGet(IME_RIGHT_REAR, &encRightRear));
+			printf("IME LB value: %d\r\n", imeGet(IME_LEFT_REAR, &encLeftRear));
 		}
+		else if (abs(joystickGetAnalog(1, 3)) < 15)
+		{
+			motorSet(5, 0);
+			motorSet(6, 0);
+			imeReset(IME_LEFT_FRONT);
+			imeReset(IME_LEFT_REAR);
+			imeReset(IME_RIGHT_FRONT);
+			imeReset(IME_RIGHT_REAR);
+		}
+		/*if (abs(joystickGetAnalog(1, 3)) < 20 && abs(joystickGetAnalog(1, 3)) < 20)
+		{
+			motorSet(2, joystickGetAnalog(1, 3));
+			motorSet(4, -joystickGetAnalog(1, 3));
+			motorSet(5, -joystickGetAnalog(1, 2));
+			motorSet(6, joystickGetAnalog(1, 2));
+		}*/
 		else
 		{
+			motorSet(2, 0);
+			motorSet(4, 0);
 			motorSet(5, 0);
 			motorSet(6, 0);
 			imeReset(IME_LEFT_FRONT);
@@ -224,3 +318,5 @@ void motorCorrection()
 		}
 	}
 }
+
+

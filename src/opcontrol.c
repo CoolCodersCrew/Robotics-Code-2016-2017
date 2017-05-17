@@ -36,14 +36,14 @@ void operatorControl()
 	///////////////////////
 	////// Drivetrain ///////
 	///////////////////////
-	while (1)
+	while (1) //Calling functions
 	{
 		manualControl();
 		//turnControl();
 		turbineControl();
 		//spoolControl();
 		shaftEncoder();
-		motorCorrection();
+		//motorCorrection();
 	}
 }
 

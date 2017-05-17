@@ -1,7 +1,7 @@
 #pragma once
 #include "API.h"
 
-//MOTORS!!!!
+// MOTORS!!!!
 
 #define MOTOR_LEFT_FRONT_WHEEL			2
 #define MOTOR_SPOOL						3
@@ -14,17 +14,19 @@
 
 void slewControlTask(void * parameter);
 
-//Integrated Motor Encoders
-#define IME_LEFT_FRONT 2
-#define IME_RIGHT_FRONT 4
-#define IME_LEFT_REAR 5
-#define IME_RIGHT_REAR 6
-#define IME_NUMBER 4
+// Integrated Motor Encoders
+#define IME_LEFT_FRONT		2
+#define IME_RIGHT_FRONT		4
+#define IME_LEFT_REAR		5
+#define IME_RIGHT_REAR		6
+#define IME_NUMBER			4
 
+// Line Trackers
+#define LINE_TRACKER_1		1
+#define LINE_TRACKER_2		2
 
-
-//Opcontrol Functions
-
+/* Opcontrol Functions
+	Declaring functions*/
 void manualControl();
 void turnControl();
 void turbineControl();
@@ -32,18 +34,21 @@ void spoolControl();
 void shaftEncoder();
 void motorCorrection();
 
-//Shaft Encoders
+// Shaft Encoders
 
-#define QUAD_TOP_PORT 1
-#define QUAD_BOTTOM_PORT 2
+#define QUAD_TOP_PORT		1
+#define QUAD_BOTTOM_PORT	2
 Encoder encoder;
 
-//Autonomous
+// Autonomous
 
-extern int straight;
+/*extern int straight;
 extern int leftTurning;
-extern int rightTurning;
-void autoDrive(int straight, int leftTurning, int rightTurning);
+*/extern int rightTurning;
+void autoStraight(int straight);
+void autoLeft(int left);
+void autoRight(int right);
+void autoArc(int left, int right);
 
 
 

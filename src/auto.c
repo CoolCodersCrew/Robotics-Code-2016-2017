@@ -30,10 +30,14 @@
 
 void autonomous() //Theoretical complete lap
 {
-		autoArc(117, 86);
-		autoRight(117);
-		autoStraight(127);
-		autoArc(117, 86);
-		autoRight(117);
-		autoStraight(127);
+		wait(20);
+		autoArc(125, 70, 4000); // get past cubes at 125 power to left, 70 power to right, for 4 seconds
+		autoArc(125, -125, 1000); // turn right for 1 second
+		autoArc(125, 60, 3000); // Go straight for 3 seconds
 }
+/*autoArc(125, 70, 4000);
+autoRight(127);
+autoStraight(127, 70);
+autoArc
+autoRight(127);
+autoStraight(127, 70);*/

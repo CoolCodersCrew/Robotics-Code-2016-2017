@@ -12,23 +12,43 @@ This is open source and can possibly help you in creating your own code in PROS 
 
 ## Installing PROS for Visual Studio
 
-1. Install PROS by going to the PROS website underneath
+1. Install PROS by going to the PROS website underneath 
 
-2. Once installed, open Visual Studio
+*If you don't want Atom do a custom install
 
-3. Open Tools then open External Tools
+2. In Visual Studio Installer, under workloads you need Desktop developmentwith C++
 
-4. Add an external tool and title it PROS upload
+	In individual componentsm select C++/CLI support
+	
+3. Create folder for PROS projects
 
-5. Write the file location of your pros.exe, in cli folder of PROS
+4. Open cmd.exe in the folder execute pros conduct new One "One is the name of folder you created"
 
-6. In arguments write mu
+5. If asked Y/N select Y, delete newly created folder and start over at step 3
 
-7. For Initial directory, have it be for your Project Directory
+6. Open Visual Studio, file, new existing project and select the folder you just created and name the project
 
-8. Check Use Output window, now you can upload your PROS code to the cortex
+7. Select use external build system
 
-### Logs
+8. In build command line, rebuild command line pros mu
+
+9.  In Clean command line, pros make clean
+
+10. In output(for debugging) pros terminal and then click finish
+
+11. Open Tools then open External Tools
+
+12. Add an external tool and title it PROS upload
+
+13. Write the file location of your pros.exe, in cli folder of PROS
+
+14. In arguments write mu
+
+15. For Initial directory, have it be for your Project Directory
+
+16. Check Use Output window, now you can upload your PROS code to the cortex
+
+## Logs
 
 3/10/17
 
@@ -45,6 +65,10 @@ New robot, will be detailed in future. New functions for drive control and how t
 Slew Rate Control implemented so motors will not ptc.
 Robot will go around the field once with rope trailing behind it to each corner,
 when it arrives to the last corner, gear with ziptie will turn at square and score a lap every 5 seconds.
+
+8/13/17
+
+Updated nstructions, the start of a new year with the Knights
 
 ### References 
 

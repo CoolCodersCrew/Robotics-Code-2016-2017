@@ -53,11 +53,18 @@ Encoder driveEncoder2;
 /*extern int straight;
 extern int leftTurning;
 */
-extern int rightTurning;
+int rightTurning;
 void autoStraight(int left, int right);
 void autoLeft(int left);
 void autoRight(int right);
 void autoArc(int left, int right, int length);
+
+/*8-14-17
+
+void cfunction();
+int a;
+
+*/
 
 
 

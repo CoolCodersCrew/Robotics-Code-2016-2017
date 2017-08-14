@@ -17,7 +17,7 @@ int maxinum(int i1, int i2) {
 }
 */
 void slewControlTask(void * parameter) {
-	extern int slewTmp;
+	extern int slewTmp; // local variable
 	extern int slewTarget[10]; // motors
 	while (1) {
 		for (int i = 0; i < 10; i++) { // check each motor starting from 0 and adds 1
@@ -46,6 +46,8 @@ void smartMotorSet(int motor, int cmd) {
 * @param Power of left motors
 * @param Power of right motors
 */
+
+
 void autoStraight(int left, int right)
 {
 	int time = millis();
@@ -268,8 +270,8 @@ void motorCorrection()
 		imeReset(IME_RIGHT_REAR);
 		if (abs(joystickGetAnalog(1, 3)) > 15)
 		{
-			motorSet(2, joystickGetAnalog(1, 3) - K*(imeGetVelocity(IME_RIGHT_FRONT, &encRightFront) - imeGetVelocity(IME_LEFT_FRONT, &encLeftFront))); // LF Wheel
-			motorSet(4, -joystickGetAnalog(1, 3) + K*(imeGetVelocity(IME_RIGHT_REAR, &encRightRear) - imeGetVelocity(IME_LEFT_REAR, &encLeftRear)));  // LB Wheel 
+			smartMotorSet(2, joystickGetAnalog(1, 3) - K*(imeGetVelocity(IME_RIGHT_FRONT, &encRightFront) - imeGetVelocity(IME_LEFT_FRONT, &encLeftFront))); // LF Wheel
+			smartMotorSet(4, -joystickGetAnalog(1, 3) + K*(imeGetVelocity(IME_RIGHT_REAR, &encRightRear) - imeGetVelocity(IME_LEFT_REAR, &encLeftRear)));  // LB Wheel 
 			printf("IME LF value: %d\r\n", imeGetVelocity(IME_LEFT_FRONT, &encLeftFront));
 			printf("IME RF value: %d\r\n", imeGetVelocity(IME_RIGHT_FRONT, &encRightFront));
 			printf("IME RB value: %d\r\n", imeGetVelocity(IME_RIGHT_REAR, &encRightRear));
@@ -286,8 +288,8 @@ void motorCorrection()
 		}
 		if (abs(joystickGetAnalog(1, 3)) > 15)
 		{
-			motorSet(5, -joystickGetAnalog(1, 2) + K*(imeGetVelocity(IME_LEFT_FRONT, &encLeftFront) - imeGetVelocity(IME_RIGHT_FRONT, &encRightFront))); // RF Wheel
-			motorSet(6, joystickGetAnalog(1, 2) - K*(imeGetVelocity(IME_LEFT_REAR, &encLeftRear) - imeGetVelocity(IME_RIGHT_REAR, &encRightRear)));	// LF Wheel
+			smartMotorSet(5, -joystickGetAnalog(1, 2) + K*(imeGetVelocity(IME_LEFT_FRONT, &encLeftFront) - imeGetVelocity(IME_RIGHT_FRONT, &encRightFront))); // RF Wheel
+			smartMotorSet(6, joystickGetAnalog(1, 2) - K*(imeGetVelocity(IME_LEFT_REAR, &encLeftRear) - imeGetVelocity(IME_RIGHT_REAR, &encRightRear)));	// LF Wheel
 			printf("IME LF value: %d\r\n", imeGetVelocity(IME_LEFT_FRONT, &encLeftFront));
 			printf("IME RF value: %d\r\n", imeGetVelocity(IME_RIGHT_FRONT, &encRightFront));
 			printf("IME RB value: %d\r\n", imeGetVelocity(IME_RIGHT_REAR, &encRightRear));
@@ -323,6 +325,16 @@ void motorCorrection()
 	}
 }
 
+/*8-14-17*/
+/*
+void cfunction()
+{
+	for (a=0; a<10; a++)
+	{ 
+	motorSet(2, joystickGetAnalog(1, 3));
+	}
+}
+*/
 
 
 

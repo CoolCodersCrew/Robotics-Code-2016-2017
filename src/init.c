@@ -39,7 +39,7 @@ void initializeIO() {
  * This function must exit relatively promptly, or the operatorControl() and autonomous() tasks will not start. An autonomous mode selection menu like the pre_auton() in other environments can be implemented in this task if desired.
  */
 void initialize() {
-	extern int slewTarget[10]; // Initialize SRC
+	/*extern int slewTarget[10]; // Initialize SRC
 	for (int i = 0; i<10; i++) {
 		slewTarget[i] = 0;
 		motorSet(i + 1, slewTarget[i]);
@@ -48,7 +48,13 @@ void initialize() {
 	
 	encoder = encoderInit(1, 2, false);
 	driveEncoder = encoderInit(3, 4, false);
-	driveEncoder2 = encoderInit(5, 6, false);
+	driveEncoder2 = encoderInit(5, 6, false);*/
+	imeInitializeAll();
+	speakerInit();
+	void speakerInit();
+	void rIme();
+	void pDrive();
+
 
 	//int counts = imeInitializeAll();
 }

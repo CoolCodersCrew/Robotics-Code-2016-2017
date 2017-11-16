@@ -39,15 +39,14 @@ void operatorControl()
 	while (1) //Calling functions
 
 	{
-		//manualControl();
+		manualControl();
 		//turnControl();
-		turbineControl();
 		//spoolControl();
-		shaftEncoder();
+		//shaftEncoder();
 		//motorCorrection();
 		//driveShaftEncoder();
-		testMotors();
-		wait(20);
+		//testMotors();
+		delay(20);
 	}
 }
 

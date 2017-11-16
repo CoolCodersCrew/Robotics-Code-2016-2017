@@ -1,5 +1,5 @@
 #include "main.h"
-#include "library.h"
+
 
 //Global Variables
 int slewTmp;
@@ -16,7 +16,7 @@ int maxinum(int i1, int i2) {
 	else return i1;
 }
 */
-void slewControlTask(void * parameter) {
+/*void slewControlTask(void * parameter) {
 	extern int slewTmp; // local variable
 	extern int slewTarget[10]; // motors
 	while (1) {
@@ -25,9 +25,9 @@ void slewControlTask(void * parameter) {
 			slewTmp += mininum(15, abs(slewTarget[i] - slewTmp))* \
 			(slewTarget[i] - slewTmp) / abs(slewTarget[i] - slewTmp); 
 			
-			/* If the values in i2 are more than 15 do the math functions else, add speed for slew by 15, so it does not increase by 15 right at the start 
+			 If the values in i2 are more than 15 do the math functions else, add speed for slew by 15, so it does not increase by 15 right at the start 
 			 Ex. i =1, slewTarget[i] = 2, then slewTmp has a motorGet(), lets say it currently has a speed of 6 for motor port 3, 
-			 So abs(slewTarget[i] - slewTmp)) functions, 4*4/4 equals 4*/
+			 So abs(slewTarget[i] - slewTmp)) functions, 4*4/4 equals 4*
 			
 			motorSet(i + 1, slewTmp); // now set the speed for that motor
 		}
@@ -38,7 +38,7 @@ void smartMotorSet(int motor, int cmd) {
 	extern int slewTarget[10];
 	if (abs(cmd)<15) cmd = 0;
 	slewTarget[motor - 1] = cmd;
-}
+} */
 
 //Autonomous//
 /**
@@ -138,10 +138,21 @@ void manualControl() // Drive Control
 }
 void testMotors() // Test Drive Control 
 {
-		smartMotorSet(2, joystickGetAnalog(1, 3));
-		smartMotorSet(4, -joystickGetAnalog(1, 3));
-		smartMotorSet(5, -joystickGetAnalog(1, 2));
-		smartMotorSet(6, joystickGetAnalog(1, 2));
+	if (joystickGetAnalog(1, 2) > 15) // Grab cone
+	{
+		motorSet(7, joystickGetAnalog(1, 2));
+		motorSet(8, -joystickGetAnalog(1, 2));
+	}
+	else if (joystickGetAnalog(1, 2) < 15) // Release cone
+	{
+		motorSet(7, -joystickGetAnalog(1, 2));
+		motorSet(8, joystickGetAnalog(1, 2));
+	}
+	else
+	{
+		motorSet(7, 0);
+		motorSet(8, 0);
+	}
 }
 
 // Turn Control //
@@ -158,27 +169,6 @@ void turnControl()
 	else
 	{
 		manualControl();
-	}
-}
-
-// Turbine Control // 
-void turbineControl() // Gear with zipties so it can do multiple laps in after just going sround once
-{
-	{ 
-		if (joystickGetDigital(1, 5, JOY_DOWN))
-		{
-			motorSet(7, -127);
-		}
-
-		else if (joystickGetDigital(1, 5, JOY_UP))
-		{
-			motorSet(7, 127);
-		}
-
-		else
-		{
-			motorSet(7, 0);
-		}
 	}
 }
 
@@ -254,7 +244,7 @@ void shaftEncoder()
 }
 
 // IME Stable Manual, not yet until IMES are installed, which will probably be never // 
-void motorCorrection()
+/*void motorCorrection()
 {
 	int encLeftFront;
 	int encRightFront;
@@ -265,9 +255,7 @@ void motorCorrection()
 	while (1)
 	{
 		imeReset(IME_LEFT_FRONT);
-		imeReset(IME_LEFT_REAR);
 		imeReset(IME_RIGHT_FRONT);
-		imeReset(IME_RIGHT_REAR);
 		if (abs(joystickGetAnalog(1, 3)) > 15)
 		{
 			smartMotorSet(2, joystickGetAnalog(1, 3) - K*(imeGetVelocity(IME_RIGHT_FRONT, &encRightFront) - imeGetVelocity(IME_LEFT_FRONT, &encLeftFront))); // LF Wheel
@@ -304,13 +292,13 @@ void motorCorrection()
 			imeReset(IME_RIGHT_FRONT);
 			imeReset(IME_RIGHT_REAR);
 		}
-		/*if (abs(joystickGetAnalog(1, 3)) < 20 && abs(joystickGetAnalog(1, 3)) < 20)
+		if (abs(joystickGetAnalog(1, 3)) < 20 && abs(joystickGetAnalog(1, 3)) < 20)
 		{
 			motorSet(2, joystickGetAnalog(1, 3));
 			motorSet(4, -joystickGetAnalog(1, 3));
 			motorSet(5, -joystickGetAnalog(1, 2));
 			motorSet(6, joystickGetAnalog(1, 2));
-		}*/
+		}
 		else
 		{
 			motorSet(2, 0);
@@ -323,7 +311,7 @@ void motorCorrection()
 			imeReset(IME_RIGHT_REAR);
 		}
 	}
-}
+}*/
 
 /*8-14-17*/
 /*
@@ -335,6 +323,13 @@ void cfunction()
 	}
 }
 */
+void speaker()
+{
+	speakerPlayRtttl("USSR National Anthem:d=4,o=5,b=250:"
+		"f6, 2a#6, f.6," 
+		"8g6, 2a6, d6, d6, 2g6, f.6, 8d#6, 2f6, a#., 8a#, 2c6, c.6, 8d6, 2d#6, d#6, f6, 2g6, a.6, 8a#6, 2c.6, f6, 2d6, c.6, 8a#6, 2c6, a6, f6, 2a#6, a.6, 8g6, 2a6, d6, d6, 2g6, f.6, 8d#6, 2f6, a#., 8a#,"
+		"2a#6, a.6, 8g6, 1f6, 1d6, c6, a#6, a6, a#6, 2c.6, f6, 2f.6, 1a#6, a6, g6, f6, g6, 2a.6, d6, 2d6");
+}
 
 
 

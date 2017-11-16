@@ -27,6 +27,9 @@
     <ClCompile Include="src\library.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\slew.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Serial Debugging.txt" />
@@ -39,6 +42,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="API.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\slew.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

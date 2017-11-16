@@ -8,19 +8,18 @@
 #define MOTOR_LEFT_FRONT_WHEEL3			4
 #define MOTOR_RIGHT_FRONT_WHEEL			5
 #define MOTOR_RIGHT_FRONT_WHEEL2		6
-#define MOTOR_TURBINE					7 
+#define MOTOR_TEST_1					7 
+#define MOTOR_TEST_2					8
 
-//SRC
+/*SRC
 
 void slewControlTask(void * parameter);
 void smartMotorSet(int motor, int cmd);
-#define mininum(a,b) (((a) > (b)) ? (a) : (b))
+#define mininum(a,b) (((a) > (b)) ? (a) : (b)) */
 
 // Integrated Motor Encoders
-#define IME_LEFT_FRONT		2
-#define IME_RIGHT_FRONT		4
-#define IME_LEFT_REAR		5
-#define IME_RIGHT_REAR		6
+#define IME_LEFT_FRONT		1
+#define IME_RIGHT_FRONT		2
 #define IME_NUMBER			4
 
 
@@ -28,7 +27,6 @@ void smartMotorSet(int motor, int cmd);
 	Declaring functions*/
 void manualControl();
 void turnControl();
-void turbineControl();
 void spoolControl();
 void shaftEncoder();
 void motorCorrection();
@@ -58,6 +56,7 @@ void autoStraight(int left, int right);
 void autoLeft(int left);
 void autoRight(int right);
 void autoArc(int left, int right, int length);
+void speaker();
 
 /*8-14-17
 
